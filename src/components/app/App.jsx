@@ -7,9 +7,13 @@ const App = () => {
 
   useEffect(() => {
     const fetchCharacters = async () => {
-      const API = await fetch("https://swapi.dev/api/people?page=1");
+      try {
+        const API = await fetch("https://swapi.dev/api/people?page=1");
 
-      setCharacters((await API.json()).results);
+        setCharacters((await API.json()).results);
+      } catch (err) {
+        console.log(err);
+      }
     };
 
     fetchCharacters();
